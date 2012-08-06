@@ -203,3 +203,17 @@
   border-radius: 3px;
 }
 
+/**********************/
+/* style for run-list */
+/**********************/
+.task-list > ul > li .expanded-content .run-list {
+  
+}
+.task-list > ul > li .expanded-content .run-list ul {
+  margin: 0px;
+  list-style: none;
+}
+.task-list > ul > li .expanded-content .run-list ul li {
+  
+}
+

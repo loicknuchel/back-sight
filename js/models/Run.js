@@ -1,6 +1,7 @@
 define([
-  'knockout'
-], function(ko){
+  'knockout',
+  'moment'
+], function(ko, moment){
   'use strict';
   // represent an execution period for a task
   var Run = function( run ) {
@@ -15,6 +16,9 @@ define([
     };
     self.isRunning = function(){
       return self.stop() === undefined;
+    };
+    self.toString = function(){
+      return moment(self.start()).format('DD/MM/YYYY H:mm') + ' : ' +self.comment() + ' ('+moment.humanizeDuration(self.stop() - self.start())+')';
     };
   };
   return Run;

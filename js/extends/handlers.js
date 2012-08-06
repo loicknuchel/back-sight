@@ -5,6 +5,31 @@ define([
 ], function(ko, g){
   'use strict';
   
+  ko.bindingHandlers.dblclick = {
+      'init': function(element, valueAccessor, allBindingsAccessor, viewModel) {
+          var newValueAccessor = function () {
+              var result = {};
+              result['dblclick'] = valueAccessor();
+              return result;
+          };
+          return ko.bindingHandlers['event']['init'].call(this, element, newValueAccessor, allBindingsAccessor, viewModel);
+      }
+  }
+  
+  /*ko.bindingHandlers.confirm = {
+      'init': function(element, valueAccessor, allBindingsAccessor, viewModel) {
+          var newValueAccessor = function () {
+              var result = {};
+              result['click'] = (function(){
+                if(confirm('sure?')){
+                  return valueAccessor();
+                }
+              })();
+              return result;
+          };
+          return ko.bindingHandlers['event']['init'].call(this, element, newValueAccessor, allBindingsAccessor, viewModel);
+      }
+  }*/
   
   ko.bindingHandlers.json = {
     update: function(element, valueAccessor, allBindingsAccessor, viewModel) {
