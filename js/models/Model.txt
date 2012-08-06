@@ -1,0 +1,31 @@
+User {
+  String name;
+  Task[] tasks;
+  Tag[] tags;
+  Boolean sync;
+  String syncUrl;
+  Date created;
+}
+
+Task {
+  String name;
+  String description;
+  String[] commentaires;
+  Run[] runs;
+  Tag[] tags;
+  Integer priority;
+  Integer status; // wait, run, done, archive
+  Date created;
+}
+
+Run {
+  Date start;
+  Date stop;
+  String comment;
+}
+
+Tag {
+  String name;
+  String color;
+  Boolean show;
+}

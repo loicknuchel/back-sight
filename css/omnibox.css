@@ -1,0 +1,131 @@
+
+
+/* Form wrapper styling */
+.omnibox {
+  zoom:1;
+  width: 850px;
+  padding: 20px;
+  margin: 5px auto 20px auto;
+  background: #444;
+  background: rgba(0,0,0,.2);
+  border-radius: 10px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+}
+.omnibox:before, .omnibox:after{
+  content:"";
+  display:table;
+}
+.omnibox:after{
+  clear:both;
+}
+ 
+/* Form text input */
+ 
+.omnibox input {
+  width: 730px;
+  height: 20px;
+  padding: 10px 5px;
+  float: left;    
+  font: bold 16px 'lucida sans', 'trebuchet MS', 'Tahoma';
+  border: 0;
+  color: #666;
+  background: #bbb;
+  border-radius: 3px 0 0 3px;      
+}
+ 
+.omnibox input:focus {
+  outline: 0;
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+ 
+.omnibox input::-webkit-input-placeholder {
+ color: #777;
+ font-weight: normal;
+ font-style: italic;
+}
+ 
+.omnibox input:-moz-placeholder {
+  color: #777;
+  font-weight: normal;
+  font-style: italic;
+}
+ 
+.omnibox input:-ms-input-placeholder {
+  color: #777;
+  font-weight: normal;
+  font-style: italic;
+}    
+ 
+/* Form submit button */
+.omnibox button {
+  overflow: visible;
+  position: relative;
+  float: right;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  height: 40px;
+  width: 110px;
+  font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+  color: #fff;
+  background: #d83c3c;
+  border-radius: 0 3px 3px 0;      
+  text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+}   
+   
+.omnibox button:hover{     
+  background: #e54040;
+}   
+   
+.omnibox button:active,
+.omnibox button:focus{   
+  background: #c42f2f;
+  outline: 0;   
+}
+ 
+.omnibox button:before { /* left arrow */
+  content: '';
+  position: absolute;
+  border-width: 8px 8px 8px 0;
+  border-style: solid solid solid none;
+  border-color: transparent #d83c3c transparent;
+  top: 12px;
+  left: -6px;
+}
+ 
+.omnibox button:hover:before{
+  border-right-color: #e54040;
+}
+ 
+.omnibox button:focus:before,
+.omnibox button:active:before{
+  border-right-color: #c42f2f;
+}      
+ 
+.omnibox button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+  border: 0;
+  padding: 0;
+}
+
+.omnibox .omnibox-action {
+  clear: both;
+  padding: 1px;
+  margin: 0px 10px -21px;
+  color: #ccc;
+}
+
+.omnibox .omnibox-action div {
+  /*white-space : pre;
+  overflow: hidden;*/
+  height: 17px;
+  text-overflow: ellipsis;
+  line-height: 18px;
+}
+
+.omnibox .omnibox-action .error {
+  color: #B94A48;
+}
+.omnibox .omnibox-action .error:before {
+  content: "/!\\ ";
+}

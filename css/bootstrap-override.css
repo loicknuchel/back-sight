@@ -1,0 +1,184 @@
+/** **********************************************************
+  restyle the navbar !
+************************************************************ */
+
+.navbar .nav .active > a, .navbar .nav .active > a:hover {
+  background: none;
+}
+
+.navbar .nav > li > a {
+  padding: 0px;
+  line-height: normal;
+}
+
+.navbar .navbar-inner {
+  background: linear-gradient(top, rgba(22, 22, 22, .7) 0%, rgba(51, 51, 51, .7) 100%);
+  background: -moz-linear-gradient(top, rgba(22, 22, 22, .7) 0%, rgba(51, 51, 51, .7) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(22, 22, 22, .7)), color-stop(100%, rgba(51, 51, 51, .7)));
+  background: -webkit-linear-gradient(top, rgba(22, 22, 22, .7) 0%, rgba(51, 51, 51, .7) 100%);
+  background: -o-linear-gradient(top, rgba(22, 22, 22, .7) 0%, rgba(51, 51, 51, .7) 100%);
+  background: linear-gradient(top, rgba(22, 22, 22, .7) 0%, rgba(51, 51, 51, .7) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#B2161616,endColorstr=#B2333333);
+  -moz-box-shadow: 0 1px 10px #00c6ff;
+  -webkit-box-shadow: 0 1px 10px #00C6FF;
+  box-shadow: 0 1px 10px #00C6FF;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+.navbar .navbar-inner .nav-collapse ul {
+  width: 80%;
+  list-style: none;
+  font-size: 1em;
+}
+
+.navbar .navbar-inner .nav-collapse ul li:first-child {
+  border-left: 1px solid #555;
+}
+.navbar .navbar-inner .nav-collapse ul li {
+  padding: 0;
+  margin: 0;
+  float: left;
+  position: relative;
+  border-right: 1px solid #555;
+}
+
+.navbar .navbar-inner .nav-collapse ul li a {
+  text-decoration: none;
+  position: relative;
+  padding: 9px 10px 11px;
+  line-height: 19px;
+}
+
+.navbar .navbar-inner .nav-collapse a small {
+  background: black;
+  text-align: center;
+  width: 70px;
+  padding: 5px;
+  border-left: 1px solid #111;
+  border-top: 1px solid #111;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-radius: 3px;
+  display: none;
+  color: white;
+  font-size: 0.8em;
+  text-indent: 0;
+}
+
+.navbar .navbar-inner .nav-collapse a:hover small {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  margin: -40px;
+  z-index: 9999;
+  -moz-animation: navbar-title-move .25s linear;
+  -webkit-animation: navbar-title-move .25s linear;
+}
+
+@-moz-keyframes navbar-title-move {
+	0%{ -moz-transform:scale(0,0); opacity:0;}
+	50%{ -moz-transform:scale(1.2,1.2); opacity:0.3; }
+	75%{ -moz-transform:scale(0.9,0.9); opacity:0.7;}
+	100%{ -moz-transform:scale(1,1); opacity:1;}
+}
+
+@-webkit-keyframes navbar-title-move {
+	0%{ -webkit-transform:scale(0,0); opacity:0;}
+	50%{ -webkit-transform:scale(1.2,1.2); opacity:0.3;}
+	75%{ -webkit-transform:scale(0.9,0.9); opacity:0.7;}
+	100%{ -webkit-transform:scale(1,1); opacity:1;}
+}
+
+/** **********************************************************
+  restyle inputs
+************************************************************ */
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  display: inline-block;
+  height: 18px;
+  padding: 4px;
+  margin-bottom: 9px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #555;
+  
+	color: white;
+}
+
+select {
+  width: 220px;
+  border: 1px solid #BBB;
+  
+  border: 1px solid #1A1A1A;
+}
+
+select, input[type="file"] {
+  height: 28px;
+  line-height: 28px;
+  
+	background: #414141;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  background-color: white;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear .2s,box-shadow linear .2s;
+  -moz-transition: border linear .2s,box-shadow linear .2s;
+  -ms-transition: border linear .2s,box-shadow linear .2s;
+  -o-transition: border linear .2s,box-shadow linear .2s;
+  transition: border linear .2s,box-shadow linear .2s;
+  
+  border: 1px #1A1A1A solid;
+	background: #414141;
+}
+
+/* to not override this feature ! */
+.form-search input,
+.form-inline input,
+.form-horizontal input,
+.form-search textarea,
+.form-inline textarea,
+.form-horizontal textarea,
+.form-search select,
+.form-inline select,
+.form-horizontal select,
+.form-search .help-inline,
+.form-inline .help-inline,
+.form-horizontal .help-inline,
+.form-search .uneditable-input,
+.form-inline .uneditable-input,
+.form-horizontal .uneditable-input,
+.form-search .input-prepend,
+.form-inline .input-prepend,
+.form-horizontal .input-prepend,
+.form-search .input-append,
+.form-inline .input-append,
+.form-horizontal .input-append {
+  display: inline-block;
+  *display: inline;
+  margin-bottom: 0;
+  *zoom: 1;
+}
+
+/* inputs outline */
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted 9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+
+

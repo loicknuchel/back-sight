@@ -1,0 +1,226 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Back-sight app</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="css/bootstrap-responsive.min.css"> -->
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/bootstrap-override.css">
+	<style>
+	.page-content {
+    margin-top: 20px;
+	  margin-bottom: 40px;
+	}
+  .pre-modelview-container {
+    width: 150px;
+    overflow: hidden;
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    z-index: 10000;
+    padding-right: 10px;
+  }
+  .pre-modelview-container:hover, .pre-modelview  {
+    width: 750px;
+  }
+  </style>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/settings.css">
+	<link rel="stylesheet" href="css/omnibox.css">
+	<link rel="stylesheet" href="css/task-list.css">
+	<link rel="stylesheet" href="css/spinner.css">
+	<link rel="stylesheet" href="css/tests.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<script data-main="js/main" src="js/require.min.js"></script>
+	<script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+</head>
+<body>
+    <!-- navbar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Back-sight</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Tâches<small>go app</small></a></li>
+              <li><a href="#about">A propos<small>go à propos</small></a></li>
+              <li><a href="#contact">Contact<small>go contact</small></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- settings panel -->
+    <div id="settings-top-panel" class="widgetBlock js-top-panel" data-widget-name="settings-panel">
+      <div class="panel">
+        <div class="container">
+          <div class="left">
+            <h1>Back-sight app</h1>
+            <h2>Suivre et analyser vos activités</h2>		
+            <p>Back-sight vous permet d'enregistrer et d'indiquer le temps passé sur vos différentes occupations.</p>
+            <p>L'ensemble des données sont enregistrées en local dans le navigateur.</p>
+            <p>Cela permet à la fois une utilisation hors-ligne et rapide et vous garanti une maitrise de vos données.</p>
+            <p>Pour une utilisation depuis plusieurs ordinateurs et pour plus de sécurité, vous pouvez synchroniser les données, soit sur le serveur back-sight soit sur votre propre serveur.</p>
+          </div>
+          <div class="left">
+            <div>
+              <h1>Créer un utilisateur</h1>
+              <input type="text" data-bind="value: addUserField, valueUpdate: 'afterkeydown', enterKey: addUser" class="js-create-user" placeholder="nouvel utilisateur..."><br/>
+              <button data-bind="click: addUser" class="btn btn-inverse">créer</button>
+            </div>
+            <div data-bind="visible: curUser()" style="display: none;">
+              <h1>Changer d'utilisateur</h1>
+              <select data-bind="options: users, optionsText: 'name', value: curUser"></select><br/>
+              <button data-bind="click: deleteCurUser" class="btn btn-inverse">supprimer cet utilisateur</button><br/>
+              <br/>
+            </div>
+          </div>
+          <div data-bind="if: curUser()">
+            <div class="left right">		
+              <h1>Synchroniser les données de <span data-bind="text: curUser().name()" style="white-space : pre;"></span></h1>
+              <p data-bind="if: !curUser().sync() || !curUser().syncUrl()" style="color: #BD362F;">Utilisateur non synchronisé !</p>
+              <p data-bind="if: curUser().sync() && curUser().syncUrl()">Utilisateur synchronisé.</p>
+              <p>Pour activer la synchronisation, entrez l'adresse de synchronisation ici :</p>
+              <input type="text" data-bind="value: curUser().syncUrl" placeholder="Adresse de synchronisation"><br/>
+              <div data-bind="if: curUser().syncUrl">
+                <label for="sync-user"><input type="checkbox" data-bind="checked: curUser().sync" id="sync-user" /> activer la synchronisation</label>
+              </div>
+              <p>
+                L'adresse de synchronisation de back-sight est :<br/>
+                <a>http://back-sight.lkws.fr/sync</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-toggle">
+        <ul>
+          <li class="left">&nbsp;</li>
+          <li><a class="js-toggle" href="#"><i class="icon-cogs"></i> Paramètres</a></li>
+          <li class="right">&nbsp;</li>
+        </ul> 
+      </div>
+    </div>
+    <div style="height: 40px;"></div>
+
+    <!-- page content -->
+    <div class="container page-content">
+      
+      <section id="app" class="widgetBlock" data-widget-name="KO-main">
+        <!-- to preview KO viewmodel content -->
+        <div class="pre-modelview-container" data-bind="if: debug, visible: debug" style="display: none;"><pre data-bind="json: plainText()" class="pre-modelview"></pre></div>
+        
+        <section class="user" data-bind="if: curUser(), visible: curUser()" style="display: none;">
+          <div class="form-inline omnibox">
+            <input type="text" data-bind="value: omniboxText, valueUpdate: 'afterkeydown', enterKey: omniEval" placeholder="Que faire ?" autofocus>
+            <button data-bind="click: omniEval" class="btn btn-inverse js-omnibox-popover">Valider</button>
+            <div class="omnibox-action">
+              <div data-bind="html: actionToExecute"></div>
+            </div>
+          </div>
+          
+          <div data-bind="if: runningTasks() && runningTasks().length > 0">
+            <div class="task-list black">
+              <ul data-bind="foreach: runningTasks()">
+                <li>
+                  <div title="Tâche est en cours d'exécution" class="glossy-loading"><div class="circle1"></div><div class="circle2"></div></div>
+                  <div title="Arrêter cette tâche" class="btn btn-danger btn-stop" data-bind="click: $root.stopTask"></div>
+                  <div class="primary-content">
+                    <div class="left">
+                      <span data-bind="text: name"></span>
+                    </div>
+                    <div class="center">
+                      <input type="text" data-bind="value: runComment()" placeholder="Que faites vous ?" />
+                    </div>
+                    <div class="right">
+                      <span data-bind="text: startPeriod()"></span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div data-bind="if: waitingTasks() && waitingTasks().length > 0">
+            <div class="task-list black">
+              <ul data-bind="foreach: waitingTasks()">
+                <li data-bind="click: $root.expandTask, attr: { class: uiState }">
+                  <div class="btn-start" title="Démarrer cette tâche" data-bind="click: $root.startTask"><div class="btn-start-inner"></div></div>
+                  <div class="primary-content">
+                    <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.finishTask">terminer</a> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
+                  </div>
+                  <div class="expanded-content">
+                    Ceci est du contenu étendu !<br/>
+                    Bientôt ici, une description et des notes sur la tâche !
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div data-bind="if: doneTasks() && doneTasks().length > 0">
+            <div class="task-list black">
+              <ul data-bind="foreach: doneTasks()">
+                <li data-bind="click: $root.expandTask, attr: { class: uiState }">
+                  <div class="btn-archive" title="Archiver cette tâche"><i class="icon-download-alt" data-bind="click: $root.archiveTask"></i></div>
+                  <div class="primary-content">
+                    <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
+                  </div>
+                  <div class="expanded-content">
+                    Ceci est du contenu étendu !<br/>
+                    Bientôt ici, une description et des notes sur la tâche !
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div data-bind="if: debug, visible: debug" style="display: none;">
+            <div data-bind="if: curUser().tasks() && curUser().tasks().length > 0">
+              <h2>All tasks :</h2>
+              <div class="task-list black">
+                <ul data-bind="foreach: curUser().tasks()">
+                  <li>
+                    <div class="primary-content">
+                      <a href="#" data-bind="click: $root.deleteTask">x</a> - <span data-bind="text: name"></span> (<span data-bind="text: status"></span>)
+                      <ul class="dataList">
+                        <li><a href="#" title="">email@domain.com</a></li>
+                        <li><span class="red">+5488734455</span></li>
+                        <li><span class="cNote">friend</span></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-bind="if: !curUser(), visible: !curUser()" style="display: none;">
+          <div>
+            <h1>Aucun utilisateur existant.</h1>
+            <button class="btn btn-inverse js-create-first-user">Créer le premier utilisateur</button>
+          </div>
+          <br/>
+          <p>
+            Back-sight app est une application de suivi de ses tâches avec mesure du temps passé.<br/>
+            L'application est actuellement au <i><b>début de son développement</b></i> mais vous pouvez la tester si vous le souhaitez.
+          </p>
+        </section>
+        
+        
+      
+      </section>
+  
+    </div> <!-- /container -->
+</body>
+</html>

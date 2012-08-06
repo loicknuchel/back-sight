@@ -1,0 +1,205 @@
+
+/* Task list, from http://themes.kopyov.com/itsbrain/fixed/dark/contacts.html */
+
+/**************************/
+/* global list item style */
+/**************************/
+.task-list {
+  display: block;
+  color: #D5D5D5;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 20px;
+  background: url(../img/task-list/widgetBg.png) repeat;
+  clear: both;
+  border: 1px solid #272C30;
+  border-top: none;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 2px #272B2C;
+  -moz-box-shadow: inset 0 0 2px #272b2c;
+  -webkit-box-shadow: inset 0 0 2px #272B2C;
+  -moz-box-shadow: 0 1px 0 #4b4e50;
+  -webkit-box-shadow: 0 1px 0 #4B4E50;
+  box-shadow: 0 1px 0 #4B4E50;
+}
+
+.task-list.black {
+  background: none;
+  border: none;
+  -moz-border-radius: none;
+  -webkit-border-radius: none;
+  -khtml-border-radius: none;
+  border-radius: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.task-list > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-list > ul > li {
+  background: url(../img/task-list/linesSep.png) repeat-x 0 0;
+  position: relative;
+}
+
+.task-list.black > ul > li {
+  background: black;
+  background: -moz-linear-gradient(top, #161616 0%, black 100%);
+  background: -webkit-linear-gradient(top, #161616 0%, black 100%);
+  border-left: 1px solid #111;
+  border-top: 1px solid #111;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  color: white;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+.task-list.black > ul > li:hover {
+  background: -moz-linear-gradient(top, #202020 0%, #161616 100%);
+  background: -webkit-linear-gradient(top, #202020 0%, #161616 100%);
+}
+
+/*****************************/
+/* style for visible content */
+/*****************************/
+.task-list > ul > li .primary-content {
+  position: relative;
+  margin-left: 38px;
+  margin-right: 31px;
+  padding: 8px 0px;
+}
+
+.task-list > ul > li .primary-content .left {
+  display: inline;
+}
+
+.task-list > ul > li .primary-content .center {
+  display: inline;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.task-list > ul > li .primary-content .center input {
+  margin-top: -2px;
+  margin-bottom: 0px;
+  padding: 1px 4px;
+}
+
+.task-list > ul > li .primary-content .right {
+  display: inline;
+  float: right;
+}
+
+/******************************/
+/* style for expanded content */
+/******************************/
+.task-list > ul > li.expanded {
+  margin: 6px 0px;
+}
+
+.task-list > ul > li .expanded-content {
+  padding: 8px 12px;
+  display: none;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+}
+.task-list > ul > li.expanded .expanded-content {
+  display: block;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+}
+
+/*******************************/
+/* style for Task list buttons */
+/*******************************/
+.task-list > ul > li .btn-start {
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin: 8px 10px;
+  cursor: pointer;
+}
+.task-list > ul > li .btn-start .btn-start-inner {
+  width: 0px;
+  height: 0px;
+  margin-left: 50%;
+  margin-top: 50%;
+  left: -6px;
+  top: -7px;
+  position: relative;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid #22a9db;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+}
+.task-list > ul > li .btn-start:hover .btn-start-inner { border-left: 12px solid #45bde9 }
+.task-list > ul > li .btn-start:active .btn-start-inner { border-left: 12px solid #e94545 }
+
+.task-list > ul > li .btn-stop {
+  display: block;
+  float: right;
+  width: 15px;
+  height: 15px;
+  margin: 8px;
+  padding: 0px;
+}
+.task-list > ul > li .btn-archive {
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin: 8px 10px;
+  cursor: pointer;
+}
+.task-list > ul > li .btn-archive i {
+  color: #15ADFF;
+}
+
+/***********************************/
+/* style for dataList in Task list */
+/***********************************/
+.task-list > ul > li ul.dataList {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  margin-top: -1px;
+  font-size: 11px;
+}
+
+.task-list > ul > li ul.dataList  li {
+  display: inline-block;
+  padding: 0 6px 1px 6px!important;
+  border: none!important;
+  margin-left: 6px;
+}
+
+.task-list > ul > li ul.dataList .red {
+  color: #E0A5A5;
+}
+
+.task-list > ul > li ul.dataList .cNote {
+  background: url(../img/task-list/darkBg.png) repeat;
+  display: block;
+  padding: 0 6px 1px 6px;
+  border: 1px solid #24272B;
+  color: #878787;
+  margin-top: 1px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+}
+
