@@ -26,8 +26,21 @@ define([
     
     /*public Date*/ self.created = ko.observable( task.created || new Date() );
     /*public Date*/ self.finished = ko.observable( task.finished || undefined );
-    /*public String*/ self.uiState = ko.observable( task.uiState || '' );
+    /*public String*/ self.uiState = ko.observable( '' );
     
+    /**********************************/
+    /* calculate total execution time */
+    /**********************************/
+    
+    /*public String*/ self.totalExec = ko.computed(function(){
+      var count = 0;
+      ko.utils.arrayMap( self.runs(), function(run){
+        if(run.stop()){
+          count += run.stop() - run.start();
+        }
+      });
+      return moment.humanizeDuration(count);
+    });
     
     /***************************************************/
     /* logic used to calculate live Run execution time */

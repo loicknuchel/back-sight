@@ -55,8 +55,6 @@ define([
       }
     });
     
-    /*self.startTask = function( task )   { task.setStart(); };
-    self.stopTask = function( task )    { task.setStop(); };*/
     self.startTask = function( task )   { task.status(g.model.task.status.run); };
     self.stopTask = function( task )    { task.status(g.model.task.status.wait); };
     self.finishTask = function( task )  { task.status(g.model.task.status.done); };

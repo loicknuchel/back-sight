@@ -123,99 +123,118 @@
         <!-- to preview KO viewmodel content -->
         <div class="pre-modelview-container" data-bind="if: debug, visible: debug" style="display: none;"><pre data-bind="json: plainText()" class="pre-modelview"></pre></div>
         
-        <section class="user" data-bind="if: curUser(), visible: curUser()" style="display: none;">
-          <div class="form-inline omnibox">
-            <input type="text" data-bind="value: omniboxText, valueUpdate: 'afterkeydown', enterKey: omniEval" placeholder="Que faire ?" autofocus>
-            <button data-bind="click: omniEval" class="btn btn-inverse js-omnibox-popover">Valider</button>
-            <div class="omnibox-action">
-              <div data-bind="html: actionToExecute"></div>
+        <div data-bind="if: curUser(), visible: curUser()" style="display: none;">
+          <div class="user" style="width: 970px;">
+            <div class="form-inline omnibox">
+              <input type="text" data-bind="value: omniboxText, valueUpdate: 'afterkeydown', enterKey: omniEval" placeholder="Que faire ?" autofocus>
+              <button data-bind="click: omniEval" class="btn btn-inverse js-omnibox-popover">Valider</button>
+              <div class="omnibox-action">
+                <div data-bind="html: actionToExecute"></div>
+              </div>
             </div>
-          </div>
-          
-          <div data-bind="if: runningTasks() && runningTasks().length > 0">
-            <div class="task-list black">
-              <ul data-bind="foreach: runningTasks()">
-                <li>
-                  <div title="Tâche est en cours d'exécution" class="glossy-loading"><div class="circle1"></div><div class="circle2"></div></div>
-                  <div title="Arrêter cette tâche" class="btn btn-danger btn-stop" data-bind="click: $root.stopTask"></div>
-                  <div class="primary-content">
-                    <div class="left">
-                      <span data-bind="text: name"></span>
-                    </div>
-                    <div class="center">
-                      <input type="text" data-bind="value: runComment()" placeholder="Que faites vous ?" />
-                    </div>
-                    <div class="right">
-                      <span data-bind="text: startPeriod()"></span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div data-bind="if: waitingTasks() && waitingTasks().length > 0">
-            <div class="task-list black">
-              <ul data-bind="foreach: waitingTasks()">
-                <li data-bind="click: $root.expandTask, attr: { class: uiState }">
-                  <div class="btn-start" title="Démarrer cette tâche" data-bind="click: $root.startTask"><div class="btn-start-inner"></div></div>
-                  <div class="primary-content">
-                    <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.finishTask">terminer</a> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
-                  </div>
-                  <div class="expanded-content">
-                    Ceci est du contenu étendu !<br/>
-                    Bientôt ici, une description et des notes sur la tâche !
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div data-bind="if: doneTasks() && doneTasks().length > 0">
-            <div class="task-list black">
-              <ul data-bind="foreach: doneTasks()">
-                <li data-bind="click: $root.expandTask, attr: { class: uiState }">
-                  <div class="btn-archive" title="Archiver cette tâche"><i class="icon-download-alt" data-bind="click: $root.archiveTask"></i></div>
-                  <div class="primary-content">
-                    <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
-                  </div>
-                  <div class="expanded-content">
-                    Ceci est du contenu étendu !<br/>
-                    Bientôt ici, une description et des notes sur la tâche !
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div data-bind="if: debug, visible: debug" style="display: none;">
-            <div data-bind="if: curUser().tasks() && curUser().tasks().length > 0">
-              <h2>All tasks :</h2>
+            
+            <div data-bind="if: runningTasks() && runningTasks().length > 0">
               <div class="task-list black">
-                <ul data-bind="foreach: curUser().tasks()">
+                <ul data-bind="foreach: runningTasks()">
                   <li>
+                    <div title="Tâche est en cours d'exécution" class="glossy-loading"><div class="circle1"></div><div class="circle2"></div></div>
+                    <div title="Arrêter cette tâche" class="btn btn-danger btn-stop" data-bind="click: $root.stopTask"></div>
                     <div class="primary-content">
-                      <a href="#" data-bind="click: $root.deleteTask">x</a> - <span data-bind="text: name"></span> (<span data-bind="text: status"></span>)
-                      <ul class="dataList">
-                        <li><a href="#" title="">email@domain.com</a></li>
-                        <li><span class="red">+5488734455</span></li>
-                        <li><span class="cNote">friend</span></li>
-                      </ul>
+                      <div class="left">
+                        <span data-bind="text: name"></span>
+                      </div>
+                      <div class="center">
+                        <input type="text" data-bind="value: runComment()" placeholder="Que faites vous ?" />
+                      </div>
+                      <div class="right">
+                        <span data-bind="text: startPeriod()"></span>
+                      </div>
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
+            <div data-bind="if: waitingTasks() && waitingTasks().length > 0">
+              <div class="task-list black">
+                <ul data-bind="foreach: waitingTasks()">
+                  <li data-bind="click: $root.expandTask, attr: { class: uiState }">
+                    <div class="btn-start" title="Démarrer cette tâche" data-bind="click: $root.startTask"><div class="btn-start-inner"></div></div>
+                    <div class="primary-content">
+                      <div class="left">
+                        <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.finishTask">terminer</a> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
+                      </div>
+                      <div class="right">
+                        <span data-bind="text: totalExec"></span>
+                      </div>
+                    </div>
+                    <div class="row expanded-content">
+                      <div class="span4">
+                        Ceci est du contenu étendu !<br/>
+                        Bientôt ici, une description et des notes sur la tâche !
+                      </div>
+                      <!--<div class="span4">
+                        test<br/>aa
+                      </div>
+                      <div class="span4">
+                        <ul data-bind="foreach: runs()">
+                          <li data-bind="if: comment() && comment().length > 0"><span data-bind="text: comment()"></span></li>
+                        </ul>
+                      </div>-->
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div data-bind="if: doneTasks() && doneTasks().length > 0">
+              <div class="task-list black">
+                <ul data-bind="foreach: doneTasks()">
+                  <li data-bind="click: $root.expandTask, attr: { class: uiState }">
+                    <div class="btn-archive" title="Archiver cette tâche"><i class="icon-download-alt" data-bind="click: $root.archiveTask"></i></div>
+                    <div class="primary-content">
+                      <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
+                    </div>
+                    <div class="expanded-content">
+                      Ceci est du contenu étendu !<br/>
+                      Bientôt ici, une description et des notes sur la tâche !
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div data-bind="if: debug, visible: debug" style="display: none;">
+              <div data-bind="if: curUser().tasks() && curUser().tasks().length > 0">
+                <h2>All tasks :</h2>
+                <div class="task-list black">
+                  <ul data-bind="foreach: curUser().tasks()">
+                    <li>
+                      <div class="primary-content">
+                        <a href="#" data-bind="click: $root.deleteTask">x</a> - <span data-bind="text: name"></span> (<span data-bind="text: status"></span>)
+                        <ul class="dataList">
+                          <li><a href="#" title="">email@domain.com</a></li>
+                          <li><span class="red">+5488734455</span></li>
+                          <li><span class="cNote">friend</span></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
-        <section data-bind="if: !curUser(), visible: !curUser()" style="display: none;">
-          <div>
-            <h1>Aucun utilisateur existant.</h1>
-            <button class="btn btn-inverse js-create-first-user">Créer le premier utilisateur</button>
+        </div>
+        <div class="row" data-bind="if: !curUser(), visible: !curUser()" style="display: none;">
+          <div class="span12">
+            <div>
+              <h1>Aucun utilisateur existant.</h1>
+              <button class="btn btn-inverse js-create-first-user">Créer le premier utilisateur</button>
+            </div>
+            <br/>
+            <p>
+              Back-sight app est une application de suivi de ses tâches avec mesure du temps passé.<br/>
+              L'application est actuellement au <i><b>début de son développement</b></i> mais vous pouvez la tester si vous le souhaitez.
+            </p>
           </div>
-          <br/>
-          <p>
-            Back-sight app est une application de suivi de ses tâches avec mesure du temps passé.<br/>
-            L'application est actuellement au <i><b>début de son développement</b></i> mais vous pouvez la tester si vous le souhaitez.
-          </p>
-        </section>
+        </div>
         
         
       

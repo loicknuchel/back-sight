@@ -1,7 +1,7 @@
 // Author: Loïc Knuchel <loicknuchel@gmail.com>
 
 define({
-  debug: false,
+  debug: true,
   key: {
     enter: 13
   },

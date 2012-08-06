@@ -7,7 +7,7 @@ define([
   'use strict';
   
   var Assert = (function() {
-    /*private boolean*/ function isEmpty(/**/ obj){
+    /*private boolean*/ function isEmpty(/*object*/ obj){
       return typeof obj === 'undefined' || !obj || obj === undefined || obj === null || obj === '';
     }
     
