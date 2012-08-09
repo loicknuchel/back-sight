@@ -1,7 +1,7 @@
 // Author: Loïc Knuchel <loicknuchel@gmail.com>
 
 define({
-  debug: false,
+  debug: true,
   key: {
     enter: 13
   },
@@ -9,6 +9,7 @@ define({
     curUser: 'current-user-topic'
   },
   storage: {
+    user: 'back-sight-user',// not used actually
     users: 'back-sight-users'
   },
   widget: {

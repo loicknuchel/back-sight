@@ -1,4 +1,7 @@
 
+- séparer les users
+- 
+
  - expand task content (to see coments...)
  - renommer les tâche
  - tagger les tâches

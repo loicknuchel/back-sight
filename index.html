@@ -134,104 +134,103 @@
             </div>
             
             <div data-bind="if: runningTasks() && runningTasks().length > 0">
-              <div class="task-list black">
-                <ul data-bind="foreach: runningTasks()">
-                  <li>
-                    <div title="Tâche est en cours d'exécution" class="glossy-loading"><div class="circle1"></div><div class="circle2"></div></div>
-                    <div title="Arrêter cette tâche" class="btn btn-danger btn-stop" data-bind="click: $root.stopTask"></div>
-                    <div class="primary-content">
-                      <div class="left">
-                        <span data-bind="text: name"></span>
-                      </div>
-                      <div class="center">
-                        <input type="text" data-bind="value: runComment()" placeholder="Que faites vous ?" />
-                      </div>
-                      <div class="right">
-                        <span data-bind="text: startPeriod()"></span>
-                      </div>
+              <div class="task-list-container black" data-bind="foreach: runningTasks()">
+                <div class="task-item">
+                  <div class="primary-content">
+                    <div class="left">
+                      <div title="Tâche est en cours d'exécution" class="glossy-loading"><div class="circle1"></div><div class="circle2"></div></div>
+                      <span data-bind="text: name"></span>
                     </div>
-                  </li>
-                </ul>
+                    <div class="right">
+                      <span data-bind="text: startPeriod()"></span>
+                      <div title="Arrêter cette tâche" class="btn btn-danger btn-stop" data-bind="click: $root.stopTask"></div>
+                    </div>
+                    <div class="center">
+                      <input type="text" class="run-comment" data-bind="value: runComment()" placeholder="Que faites vous ?" />
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
               </div>
             </div>
             <div data-bind="if: waitingTasks() && waitingTasks().length > 0">
-              <div class="task-list black">
-                <ul data-bind="foreach: waitingTasks()">
-                  <li data-bind="dblclick: $root.expandTask, attr: { class: uiState }">
-                    <div class="btn-start" title="Démarrer cette tâche" data-bind="click: $root.startTask"><div class="btn-start-inner"></div></div>
-                    <div class="primary-content">
-                      <div class="left">
-                        <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.finishTask">terminer</a> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
-                      </div>
-                      <div class="right">
-                        <span data-bind="text: totalExec"></span>
+              <div class="task-list-container black" data-bind="foreach: waitingTasks()">
+                <div class="task-item" data-bind="dblclick: $root.expandTask, css: { expanded: uiState() == 'expanded' }">
+                  <div class="primary-content">
+                    <div class="left">
+                      <i class="icon-play btn-start" title="Démarrer cette tâche" data-bind="click: $root.startTask"></i>
+                      <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.finishTask">terminer</a> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
+                    </div>
+                    <div class="right">
+                      <span data-bind="text: totalExec"></span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="row expanded-content">
+                    <div class="span4">
+                      block 1
+                    </div>
+                    <div class="span4">
+                      block 2
+                    </div>
+                    <div class="span4 run-list-container" data-bind="foreach: runs()">
+                      <div class="run-item" data-bind="visible: comment() && comment().length > 0">
+                        <span data-bind="text: toString()"></span>
                       </div>
                     </div>
-                    <div class="row expanded-content">
-                      <div class="span4">
-                        Ceci est du contenu étendu !<br/>
-                        Bientôt ici, une description et des notes sur la tâche !
-                      </div>
-                      <div class="span4">
-                        test<br/>aa
-                      </div>
-                      <div class="span4 run-list">
-                        <ul data-bind="foreach: runs()">
-                          <li data-bind="visible: comment() && comment().length > 0"><span data-bind="text: toString()"></span></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div data-bind="if: doneTasks() && doneTasks().length > 0">
-              <div class="task-list black">
-                <ul data-bind="foreach: doneTasks()">
-                  <li data-bind="dblclick: $root.expandTask, attr: { class: uiState }">
-                    <div class="btn-archive" title="Archiver cette tâche"><i class="icon-download-alt" data-bind="click: $root.archiveTask"></i></div>
-                    <div class="primary-content">
-                      <div class="left">
-                        <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
-                      </div>
-                      <div class="right">
-                        <span data-bind="text: totalExec"></span>
+              <div class="task-list-container black" data-bind="foreach: doneTasks()">
+                <div class="task-item" data-bind="dblclick: $root.expandTask, css: { expanded: uiState() == 'expanded' }">
+                  <div class="primary-content">
+                    <div class="left">
+                      <i class="icon-download-alt btn-archive" title="Archiver cette tâche" data-bind="click: $root.archiveTask"></i>
+                      <span data-bind="text: name"></span> - <a href="#" data-bind="click: $root.deleteTask">supprimer</a>
+                    </div>
+                    <div class="right">
+                      <span data-bind="text: totalExec"></span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="row expanded-content">
+                    <div class="span4">
+                      block 1
+                    </div>
+                    <div class="span4">
+                      block 2
+                    </div>
+                    <div class="span4 run-list-container" data-bind="foreach: runs()">
+                      <div class="run-item" data-bind="visible: comment() && comment().length > 0">
+                        <span data-bind="text: toString()"></span>
                       </div>
                     </div>
-                    <div class="row expanded-content">
-                      <div class="span4">
-                        Ceci est du contenu étendu !<br/>
-                        Bientôt ici, une description et des notes sur la tâche !
-                      </div>
-                      <div class="span4">
-                        test<br/>aa
-                      </div>
-                      <div class="span4 run-list">
-                        <ul data-bind="foreach: runs()">
-                          <li data-bind="visible: comment() && comment().length > 0"><span data-bind="text: toString()"></span></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div data-bind="if: debug, visible: debug" style="display: none;">
               <div data-bind="if: curUser().tasks() && curUser().tasks().length > 0">
                 <h2>All tasks :</h2>
-                <div class="task-list black">
-                  <ul data-bind="foreach: curUser().tasks()">
-                    <li>
-                      <div class="primary-content">
-                        <a href="#" data-bind="click: $root.deleteTask">x</a> - <span data-bind="text: name"></span> (<span data-bind="text: status"></span>)
+                <div class="task-list-container black" data-bind="foreach: curUser().tasks()">
+                  <div class="task-item">
+                    <div class="primary-content">
+                      <div class="left">
+                        <i class="icon-remove btn-archive" title="Supprimer cette tâche" data-bind="click: $root.deleteTask"></i>
+                        <span data-bind="text: name"></span> (<span data-bind="text: status"></span>)
+                      </div>
+                      <div class="right">
                         <ul class="dataList">
                           <li><a href="#" title="">email@domain.com</a></li>
                           <li><span class="red">+5488734455</span></li>
                           <li><span class="cNote">friend</span></li>
                         </ul>
                       </div>
-                    </li>
-                  </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@
 /**************************/
 /* global list item style */
 /**************************/
-.task-list {
+.task-list-container {
   display: block;
   color: #D5D5D5;
   font-family: Arial, Helvetica, sans-serif;
@@ -25,7 +25,7 @@
   box-shadow: 0 1px 0 #4B4E50;
 }
 
-.task-list.black {
+.task-list-container.black {
   background: none;
   border: none;
   -moz-border-radius: none;
@@ -37,18 +37,12 @@
   box-shadow: none;
 }
 
-.task-list > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.task-list > ul > li {
+.task-list-container .task-item {
   background: url(../img/task-list/linesSep.png) repeat-x 0 0;
   position: relative;
 }
 
-.task-list.black > ul > li {
+.task-list-container.black .task-item {
   background: black;
   background: -moz-linear-gradient(top, #161616 0%, black 100%);
   background: -webkit-linear-gradient(top, #161616 0%, black 100%);
@@ -61,7 +55,7 @@
   margin: 0 auto;
 }
 
-.task-list.black > ul > li:hover {
+.task-list-container.black .task-item:hover {
   background: -moz-linear-gradient(top, #202020 0%, #161616 100%);
   background: -webkit-linear-gradient(top, #202020 0%, #161616 100%);
 }
@@ -69,50 +63,43 @@
 /*****************************/
 /* style for visible content */
 /*****************************/
-.task-list > ul > li .primary-content {
+.task-list-container .task-item .primary-content {
   position: relative;
-  margin-left: 38px;
-  margin-right: 31px;
-  padding: 8px 0px;
+  padding: 8px;
 }
 
-.task-list > ul > li .primary-content .left {
-  display: inline;
+.task-list-container .task-item .primary-content .left {
+  float: left
 }
 
-.task-list > ul > li .primary-content .center {
-  display: inline;
-  position: absolute;
-  left: 50%;
-  margin-left: -150px;
+.task-list-container .task-item .primary-content .right {
+  float: right;
 }
 
-.task-list > ul > li .primary-content .center input {
+.task-list-container .task-item .primary-content .center {
+  text-align: center;
+}
+.task-list-container .task-item input.run-comment {
   margin-top: -2px;
   margin-bottom: 0px;
   padding: 1px 4px;
 }
 
-.task-list > ul > li .primary-content .right {
-  display: inline;
-  float: right;
-}
-
 /******************************/
 /* style for expanded content */
 /******************************/
-.task-list > ul > li.expanded {
+.task-list-container .task-item.expanded {
   margin: 6px 0px;
 }
 
-.task-list > ul > li .expanded-content {
+.task-list-container .task-item .expanded-content {
   padding: 8px 12px;
   display: none;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
   transition: all .3s;
 }
-.task-list > ul > li.expanded .expanded-content {
+.task-list-container .task-item.expanded .expanded-content {
   display: block;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
@@ -122,54 +109,38 @@
 /*******************************/
 /* style for Task list buttons */
 /*******************************/
-.task-list > ul > li .btn-start {
-  float: left;
-  width: 18px;
-  height: 18px;
-  margin: 8px 10px;
-  cursor: pointer;
-}
-.task-list > ul > li .btn-start .btn-start-inner {
-  width: 0px;
-  height: 0px;
-  margin-left: 50%;
-  margin-top: 50%;
-  left: -6px;
-  top: -7px;
-  position: relative;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 12px solid #22a9db;
-  -webkit-transition: all .3s;
-  -moz-transition: all .3s;
-  transition: all .3s;
-}
-.task-list > ul > li .btn-start:hover .btn-start-inner { border-left: 12px solid #45bde9 }
-.task-list > ul > li .btn-start:active .btn-start-inner { border-left: 12px solid #e94545 }
-
-.task-list > ul > li .btn-stop {
-  display: block;
-  float: right;
-  width: 15px;
-  height: 15px;
-  margin: 8px;
-  padding: 0px;
-}
-.task-list > ul > li .btn-archive {
-  float: left;
-  width: 18px;
-  height: 18px;
-  margin: 8px 10px;
-  cursor: pointer;
-}
-.task-list > ul > li .btn-archive i {
+.task-list-container .task-item .btn-start {
+  display: inline-block;
+  background: none;
   color: #15ADFF;
+  font-size: 19px;
+  width: 18px;
+  height: 18px;
+  margin: 1px 3px -1px 4px;
+  cursor: pointer;
+}
+.task-list-container .task-item .btn-archive {
+  display: inline-block;
+  background: none;
+  color: #15ADFF;
+  font-size: 16px;
+  width: 18px;
+  height: 18px;
+  margin: -2px 4px 0px 3px;
+  cursor: pointer;
+}
+.task-list-container .task-item .btn-stop {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 1px;
+  padding: 0px;
 }
 
 /***********************************/
 /* style for dataList in Task list */
 /***********************************/
-.task-list > ul > li ul.dataList {
+.task-list-container .task-item ul.dataList {
   float: right;
   list-style: none;
   margin: 0;
@@ -179,18 +150,18 @@
   font-size: 11px;
 }
 
-.task-list > ul > li ul.dataList  li {
+.task-list-container .task-item ul.dataList  li {
   display: inline-block;
   padding: 0 6px 1px 6px!important;
   border: none!important;
   margin-left: 6px;
 }
 
-.task-list > ul > li ul.dataList .red {
+.task-list-container .task-item ul.dataList .red {
   color: #E0A5A5;
 }
 
-.task-list > ul > li ul.dataList .cNote {
+.task-list-container .task-item ul.dataList .cNote {
   background: url(../img/task-list/darkBg.png) repeat;
   display: block;
   padding: 0 6px 1px 6px;
@@ -201,19 +172,5 @@
   -webkit-border-radius: 3px;
   -khtml-border-radius: 3px;
   border-radius: 3px;
-}
-
-/**********************/
-/* style for run-list */
-/**********************/
-.task-list > ul > li .expanded-content .run-list {
-  
-}
-.task-list > ul > li .expanded-content .run-list ul {
-  margin: 0px;
-  list-style: none;
-}
-.task-list > ul > li .expanded-content .run-list ul li {
-  
 }
 
