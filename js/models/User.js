@@ -7,7 +7,7 @@ define([
   // represent all datas for a user
   var User = function( user ) {
     var self = this;
-    if(g.debug && !user.name){
+    if(g.debug && (!user || !user.name || user.name.length === 0)){
       throw 'user must have a name !';
     }
     

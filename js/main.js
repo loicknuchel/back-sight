@@ -5,7 +5,6 @@
     I also have a problem to garantee that bootstrap is loaded here (line 71).
 */
 
-// Require.js allows us to configure shortcut alias
 require.config({
   paths: {
     'jquery': 'libs/jquery-1.7.2.min',
@@ -16,7 +15,6 @@ require.config({
     'knockout': 'libs/knockout-2.1.0',
     'knockout-postbox': 'libs/knockout-postbox'
   }
-
 });
 
 require([
@@ -34,7 +32,9 @@ require([
 ], function($, ko, g, User, SettingsViewModel, HomeViewModel, Omnibox){
   'use strict';
   
-  var storage = ko.utils.parseJson( localStorage.getItem( g.storage.users ) );
+  var settings = ko.utils.parseJson( localStorage.getItem( g.storage.settings ) );
+  var curUsername = ko.utils.parseJson( localStorage.getItem( g.storage.curUsername ) );
+  var users = ko.utils.parseJson( localStorage.getItem( g.storage.users ) );
       
   $('.'+g.widget.classes).each(function(){
     var name = $.trim($(this).attr(g.widget.attrName));
@@ -51,7 +51,7 @@ require([
         return false;
       });
       
-      ko.applyBindings( new SettingsViewModel( storage || {} ), $(this).get(0) );
+      ko.applyBindings( new SettingsViewModel( settings || {}, curUsername || {}, users || [] ), $(this).get(0) );
       
     } else if(name == 'KO-main'){
       
@@ -103,6 +103,4 @@ require([
     $(this).val(Omnibox.beautify($(this).val()));
     return false;
   }));
-  
-  
 });

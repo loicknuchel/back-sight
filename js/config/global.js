@@ -6,11 +6,13 @@ define({
     enter: 13
   },
   topic: {
-    curUser: 'current-user-topic'
+    curUsername: 'current-username-topic'
   },
   storage: {
-    user: 'back-sight-user',// not used actually
-    users: 'back-sight-users'
+    curUsername: 'backSight-curUsername',
+    users: 'backSight-users',
+    user: 'backSight-user',
+    settings: 'backSight-settings'
   },
   widget: {
     classes: 'widgetBlock',

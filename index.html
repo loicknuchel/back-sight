@@ -81,16 +81,17 @@
               <input type="text" data-bind="value: addUserField, valueUpdate: 'afterkeydown', enterKey: addUser" class="js-create-user" placeholder="nouvel utilisateur..."><br/>
               <button data-bind="click: addUser" class="btn btn-inverse">créer</button>
             </div>
-            <div data-bind="visible: curUser()" style="display: none;">
+            <div data-bind="if: curUsername() && users() && users().length > 0, visible: curUsername() && users() && users().length > 0" style="display: none;">
               <h1>Changer d'utilisateur</h1>
-              <select data-bind="options: users, optionsText: 'name', value: curUser"></select><br/>
+              <select data-bind="options: users, value: curUsername"></select><br/>
               <button data-bind="click: deleteCurUser" class="btn btn-inverse">supprimer cet utilisateur</button><br/>
               <br/>
             </div>
           </div>
+          <!-- NO SYNC HERE !
           <div data-bind="if: curUser()">
             <div class="left right">		
-              <h1>Synchroniser les données de <span data-bind="text: curUser().name()" style="white-space : pre;"></span></h1>
+              <h1>Synchroniser les données de <span data-bind="text: curUser()" style="white-space : pre;"></span></h1>
               <p data-bind="if: !curUser().sync() || !curUser().syncUrl()" style="color: #BD362F;">Utilisateur non synchronisé !</p>
               <p data-bind="if: curUser().sync() && curUser().syncUrl()">Utilisateur synchronisé.</p>
               <p>Pour activer la synchronisation, entrez l'adresse de synchronisation ici :</p>
@@ -103,7 +104,7 @@
                 <a>http://back-sight.lkws.fr/sync</a>
               </p>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
       <div class="panel-toggle">

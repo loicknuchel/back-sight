@@ -19,7 +19,14 @@ define([
       Ici c'est celui-ci (car le widget home est après le widget settings dans le html).
       Il est donc nécessaire de passer le initUser depuis les settings jusqu'ici pour que l'application soit correctement initialisée.
     */
-    self.curUser = ko.observable().syncWith(g.topic.curUser, true);
+    self.curUsername = ko.observable().syncWith(g.topic.curUsername, true);
+    self.curUser = ko.computed(function(){
+      if(self.curUsername() && self.curUsername().length > 0){
+        return new User( ko.utils.parseJson( localStorage.getItem( g.storage.user+'-'+self.curUsername() ) ) || {name: self.curUsername()} );
+      } else {
+        return undefined;
+      }
+    });
         
     self.runningTasks = ko.computed(function() {
       if(self.curUser()){
@@ -118,6 +125,16 @@ define([
     self.plainText = ko.computed(function(){
       return ko.toJSON({user:self.curUser()}, null, 2);
     });
+    
+    ko.computed(function(){
+      if(self.curUser() && self.curUser().name() && self.curUser().name().length > 0){
+        console.log(self.curUser().name());
+        localStorage.setItem( g.storage.user+'-'+self.curUser().name(), ko.toJSON( self.curUser() ) );
+      } else {
+        console.log('k');
+        console.log(self.curUser());
+      }
+    }).extend({ throttle: 500 }); // save at most twice per second
     
   };
   return ViewModel;
